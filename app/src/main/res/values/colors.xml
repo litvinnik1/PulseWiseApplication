@@ -4,6 +4,9 @@
     <color name="white">#FFFFFF</color>
     <color name="background_red">#D95C5C</color>
     <color name="cardview_red">#DB7777</color>
+    <color name="toolbar_color">#DE8C8C</color>
+    <color name="toolbar_color2">#BFB6B6</color>
+    <color name="toolbar_text_color">#494545</color>
     <color name="pomodoro_amount_textview">#726E6E</color>
     <color name="pomodoro_amount_edittext">#D1CFCF</color>
     <color name="shrine_pink_100">#FFCBC1</color>

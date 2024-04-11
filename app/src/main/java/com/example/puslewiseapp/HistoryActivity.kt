@@ -10,20 +10,21 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.puslewiseapp.databinding.ActivityMainBinding
-import com.example.puslewiseapp.feature_pulsewise.data.local.PulsewiseDatabase
+import com.example.puslewiseapp.databinding.ActivityHistoryBinding
 import com.example.puslewiseapp.feature_pulsewise.data.local.dto.LocalPulsewiseItem
+import com.example.puslewiseapp.feature_pulsewise.presentation.pulsewise_main.PulsewiseHistoryLitsAdapter
 import com.example.puslewiseapp.feature_pulsewise.presentation.pulsewise_main.PulsewiseListAdapter
 import com.example.puslewiseapp.feature_pulsewise.presentation.pulsewise_main.PulsewiseMainViewModel
 import dagger.hilt.android.AndroidEntryPoint
+
 @Suppress("DEPRECATION")
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(), PulsewiseListAdapter.PulsewiseClickListener, PopupMenu.OnMenuItemClickListener {
+class HistoryActivity : AppCompatActivity(), PulsewiseHistoryLitsAdapter.PulsewiseClickListener, PopupMenu.OnMenuItemClickListener {
 
-    private lateinit var binding: ActivityMainBinding
-    private lateinit var database: PulsewiseDatabase
+    private lateinit var binding: ActivityHistoryBinding
+
     private val viewModel: PulsewiseMainViewModel by viewModels()
-    lateinit var adapter: PulsewiseListAdapter
+    lateinit var adapter: PulsewiseHistoryLitsAdapter
     lateinit var selectedPulsewiseItem: LocalPulsewiseItem
 
     private val updatePulsewiseItem = registerForActivityResult(
@@ -37,13 +38,11 @@ class MainActivity : AppCompatActivity(), PulsewiseListAdapter.PulsewiseClickLis
             }
         }
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityHistoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //Initializing the UI
         initUI()
         viewModel.allPulsewiseItems.observe(this) { list ->
             list?.let {
@@ -52,13 +51,16 @@ class MainActivity : AppCompatActivity(), PulsewiseListAdapter.PulsewiseClickLis
             }
         }
 
+        binding.backHistoryButton.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
     }
 
     private fun initUI() {
-        binding.pulsewiseRecyclerView.setHasFixedSize(true)
-        binding.pulsewiseRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        adapter = PulsewiseListAdapter(this, this)
-        binding.pulsewiseRecyclerView.adapter = adapter
+        binding.pulsewiseHistoryRecyclerView.setHasFixedSize(true)
+        binding.pulsewiseHistoryRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        adapter = PulsewiseHistoryLitsAdapter(this, this)
+        binding.pulsewiseHistoryRecyclerView.adapter = adapter
 
         val getContent = registerForActivityResult(
             ActivityResultContracts
@@ -72,19 +74,11 @@ class MainActivity : AppCompatActivity(), PulsewiseListAdapter.PulsewiseClickLis
             }
         }
 
-        binding.addNewPulsewiseItemButton.setOnClickListener {
-            val intent = Intent(this, AddPulsewiseItems::class.java)
-            getContent.launch(intent)
-        }
-        binding.showHistoryButton.setOnClickListener{
-            val intent = Intent(this, HistoryActivity::class.java)
-            getContent.launch(intent)
-        }
+
 
     }
-
     override fun onItemClicked(pulsewiseItem: LocalPulsewiseItem) {
-        val intent = Intent(this@MainActivity, AddPulsewiseItems::class.java)
+        val intent = Intent(this@HistoryActivity, AddPulsewiseItems::class.java)
         intent.putExtra("current_pomodoro", pulsewiseItem)
         updatePulsewiseItem.launch(intent)
     }
@@ -96,7 +90,7 @@ class MainActivity : AppCompatActivity(), PulsewiseListAdapter.PulsewiseClickLis
 
     private fun popUpDisplay(cardView: CardView) {
         val popup = PopupMenu(this, cardView)
-        popup.setOnMenuItemClickListener(this@MainActivity)
+        popup.setOnMenuItemClickListener(this@HistoryActivity)
         popup.inflate(R.menu.pop_up_menu)
         popup.show()
     }

@@ -15,6 +15,9 @@ class PulsewiseRepoImpl(
     suspend fun addPulsewiseItem(pulsewiseItem: LocalPulsewiseItem){
         dao.addPulsewiseItem(pulsewiseItem)
     }
+    suspend fun addAllPulsewiseItems(pulsewiseItems: List<LocalPulsewiseItem>){
+        dao.addAllPulsewiseItems(pulsewiseItems)
+    }
     suspend fun delete(pulsewiseItem: LocalPulsewiseItem){
         dao.deletePulsewiseItem(pulsewiseItem)
     }

@@ -20,19 +20,39 @@
             tools:layout_editor_absoluteX="0dp">
 
 
-            <TextView
-                android:layout_width="wrap_content"
+            <Toolbar
+                android:id="@+id/newRecordActivityToolBar"
+                android:layout_width="match_parent"
+                android:alpha="0.7"
+                android:background="@color/white"
+                android:titleTextColor="@color/black"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="0dp"
-                android:textSize="30sp"
-                android:layout_gravity="center"
-                android:textColor="@color/white"
-                android:text="Add Pulse"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/pulsewiseRecyclerView">
+                
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/backNewRecordButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="6dp"
+                        android:backgroundTint="@color/white"
+                        android:minWidth="30dp"
+                        android:minHeight="30dp"
+                        android:src="@drawable/baseline_arrow_back_24" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="New Record"
+                        android:textSize="24sp"
+                        android:layout_marginHorizontal="16dp"
+                        android:textColor="@color/black"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </Toolbar>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/timer_cardview"
@@ -49,7 +69,7 @@
                     android:id="@+id/timer_linear_layout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/cardview_red"
+                    android:background="@color/white"
                     android:orientation="vertical"
                     android:padding="16dp">
 
@@ -69,7 +89,8 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="Systolic:"
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
+                            android:alpha="0.7"
                             android:textSize="18sp" />
 
                         <TextView
@@ -81,7 +102,8 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="Diastolic:"
-                            android:textColor="@color/white"
+                            android:alpha="0.7"
+                            android:textColor="@color/black"
                             android:textSize="18sp" />
 
                         <TextView
@@ -92,7 +114,8 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="Pulse:"
-                            android:textColor="@color/white"
+                            android:alpha="0.7"
+                            android:textColor="@color/black"
                             android:textSize="18sp" />
                     </LinearLayout>
 
@@ -181,7 +204,7 @@
                     android:textColor="@color/pomodoro_amount_textview"
                     app:icon="@drawable/baseline_calendar_month_24"
                     app:iconTint="@color/pomodoro_amount_textview"
-                    android:backgroundTint="@color/shrine_pink_100"
+                    android:backgroundTint="@color/white"
                     android:layout_marginHorizontal="12dp"
                     android:layout_marginVertical="6dp"/>
                 <Button
@@ -197,13 +220,13 @@
                     android:textColor="@color/pomodoro_amount_textview"
                     app:iconSize="19dp"
                     android:layout_marginVertical="6dp"
-                    android:backgroundTint="@color/shrine_pink_100"
+                    android:backgroundTint="@color/white"
                     android:layout_marginHorizontal="12dp"/>
 
             </LinearLayout>
 
             <Button
-                android:id="@+id/addItemButton"
+                android:id="@+id/saveItemButton"
                 android:drawableStart="@drawable/baseline_add_circle_24"
                 style="@style/Widget.Material3.Button.OutlinedButton.Icon"
                 android:drawableTint="@color/white"
@@ -214,37 +237,16 @@
                 app:iconGravity="textStart"
                 app:shapeAppearance="?attr/shapeAppearanceCornerMedium"
                 app:icon="@drawable/baseline_add_circle_24"
-                app:iconTint="@color/white"
+                app:iconTint="@color/pomodoro_amount_textview"
                 android:layout_width="match_parent"
-                android:alpha="0.6"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="12dp"
                 android:layout_marginVertical="6dp"
-                android:backgroundTint="@color/background_red"
-                android:text="Add Item"
+                android:backgroundTint="@color/white"
+                android:text="Save Item"
                 android:textSize="20sp"
-                android:textColor="@color/white"/>
-            <Button
-                android:id="@+id/cancelButton"
-                android:drawableStart="@drawable/baseline_add_circle_24"
-                style="@style/Widget.Material3.Button.OutlinedButton.Icon"
-                android:drawableTint="@color/white"
-                android:height="65dp"
-                app:strokeColor="@color/white"
-                app:strokeWidth="2dp"
-                app:iconSize="30dp"
-                app:iconGravity="textStart"
-                app:shapeAppearance="?attr/shapeAppearanceCornerMedium"
-                app:iconTint="@color/white"
-                android:layout_width="match_parent"
-                android:alpha="0.6"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="12dp"
-                android:layout_marginVertical="6dp"
-                android:backgroundTint="@color/background_red"
-                android:text="Cancel"
-                android:textSize="20sp"
-                android:textColor="@color/white"/>
+                android:textColor="@color/pomodoro_amount_textview"/>
+
 
         </LinearLayout>
 

@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.example.puslewiseapp.databinding.ActivityAddPulsewiseItemsBinding
 import com.example.puslewiseapp.feature_pulsewise.data.local.dto.LocalPulsewiseItem
+import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.time.LocalTime
 import java.time.ZoneId
@@ -38,24 +39,9 @@ class AddPulsewiseItems : AppCompatActivity() {
         binding = ActivityAddPulsewiseItemsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        try {
-//            old_pulsewiseItem = (intent.getSerializableExtra("current_pulsewiseItem") as LocalPulsewiseItem)
-//
-//
-//            binding.systolicNumberPicker.value(old_pulsewiseItem.systolic)
-//            binding.editTextDescription.setText(old_pomodoro.description)
-//            isUpdate = true
-//        } catch (e: Exception){
-//
-//            e.printStackTrace()
-//        }
-
         setupSystolicNumberPicker()
         setupDiastolicNumberPicker()
         setupPulseNumberPicker()
-//        binding.datepickerButton.setOnClickListener {
-//            showDatePicker()
-//        }
         binding.datepickerButton.setOnClickListener {
             val datePickerDialog = DatePickerDialog(
                 this,
@@ -84,7 +70,7 @@ class AddPulsewiseItems : AppCompatActivity() {
                 .show()
         }
 
-        binding.addItemButton.setOnClickListener {
+        binding.saveItemButton.setOnClickListener {
             val systolic = binding.systolicNumberPicker.value
             val diastolic = binding.diastolicNumberPicker.value
             val pulse = binding.pulseNumberPicker.value
@@ -93,17 +79,13 @@ class AddPulsewiseItems : AppCompatActivity() {
 
             val time = binding.timePickerButton.text
 
-//            val title = binding.editTextTitle.text.toString()
-//            val description = binding.editTextDescription.text.toString()
-
-                val formatter = SimpleDateFormat("EEE, d MMM yyyy HH:mm a", Locale.getDefault())
                 if (isUpdate) {
                     pulsewiseItem = LocalPulsewiseItem(
                         systolic, diastolic, pulse ,date.toString(), time.toString(), old_pulsewiseItem.id
                     )
                 } else{
                     pulsewiseItem = LocalPulsewiseItem(
-                        systolic, diastolic, pulse, date.toString(), time.toString(), 1
+                        systolic, diastolic, pulse, date.toString(), time.toString(), null
                     )
                 }
                 val intent = Intent()
@@ -111,27 +93,10 @@ class AddPulsewiseItems : AppCompatActivity() {
                 setResult(Activity.RESULT_OK, intent)
                 finish()
         }
-        binding.cancelButton.setOnClickListener {
+        binding.backNewRecordButton.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
     }
-
-//    private fun showDatePicker() {
-//        val datePickerDialog = DatePickerDialog(
-//            this,
-//            { DatePicker, year: Int, monthOfYear: Int, dayOfMonth: Int ->
-//                val selectedDate = Calendar.getInstance()
-//                selectedDate.set(year, monthOfYear, dayOfMonth)
-//                val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-//                val formattedDate = dateFormat.format(selectedDate.time)
-//                binding.datepickerButton.text = formattedDate
-//            },
-//            calendar.get(Calendar.YEAR),
-//            calendar.get(Calendar.MONTH),
-//            calendar.get(Calendar.DAY_OF_MONTH)
-//        )
-//        datePickerDialog.show()
-//    }
     private fun setupSystolicNumberPicker() {
         val numberPicker = binding.systolicNumberPicker
         numberPicker.minValue = 0

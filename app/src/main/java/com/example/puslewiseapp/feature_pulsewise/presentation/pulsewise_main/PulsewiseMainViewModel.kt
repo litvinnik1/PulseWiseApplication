@@ -35,6 +35,11 @@ class PulsewiseMainViewModel @Inject constructor(
         }
     }
 
+    fun addAllPulsewiseItems(pulsewiseItem: LocalPulsewiseItem){
+        viewModelScope.launch(Dispatchers.IO) {
+            pulsewiseRepoImpl.addPulsewiseItem(pulsewiseItem)
+        }
+    }
     fun addPulsewiseItem(pulsewiseItem: LocalPulsewiseItem){
         viewModelScope.launch(Dispatchers.IO) {
             pulsewiseRepoImpl.addPulsewiseItem(pulsewiseItem)
