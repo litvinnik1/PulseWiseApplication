@@ -2,10 +2,21 @@
 
 ## *Nikita Lytvyn*
 
-**PulseWiseApp** helps you to keep track of your pulse measurement changes.
+**PulseWiseApp** helps you track your heart rate measurement changes.
 
 Time spent: **48** hours spent in total
 
+## Functionality 
+
+The following **required** functionality is completed:
+
+* [x] At the main screen the user can see his last 3 heart rate records, add a new record of his heart rate measurements, or see all of his records.
+* [x] The user can see a new record screen after clicking the add button.
+* [x] The user can choose his systolic, diastolic, and pulse measurements with a comfy number picker scroll.
+* [x] Also the user can choose a date and time in which the current record was made and click a back button arrow to get to the main screen if he wants to.
+* [x] After clicking the save button the user can see a new record on the main screen.
+* [x] On the main screen, the user can check his heart rate record history by clicking all history button.
+* [x] The user can delete his record item by holding it for a bit, a delete button will pop up and let the user delete his unused record.
 
 ## Video Walkthrough
 
