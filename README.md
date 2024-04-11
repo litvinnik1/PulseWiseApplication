@@ -15,8 +15,8 @@ The following **required** functionality is completed:
 * [x] The user can choose his systolic, diastolic, and pulse measurements with a comfy number picker scroll.
 * [x] Also the user can choose a date and time in which the current record was made and click a back button arrow to get to the main screen if he wants to.
 * [x] After clicking the save button the user can see a new record on the main screen.
-* [x] On the main screen, the user can check his heart rate record history by clicking all history button.
-* [x] The user can delete his record item by holding it for a bit, a delete button will pop up and let the user delete his unused record.
+* [x] On the main screen, the user can check his heart rate record history by clicking the all history button, also he can click a back button arrow to get to the main screen.
+* [x] The user can delete his record item by holding it for a bit, a delete button will pop up and let the user delete his unnecessary records(items can be deleted on both screens).
 
 ## Video Walkthrough
 
